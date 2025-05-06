@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados */
+body {
+  @apply bg-gray-50 text-gray-900;
+}
+
+/* Estilos para el scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#948979] rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#393E46];
+}
+
+/* Estilos para impresión */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply bg-white;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+}
