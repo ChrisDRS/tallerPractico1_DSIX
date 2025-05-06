@@ -5,20 +5,20 @@ const ServiceCard = ({ service }) => {
   const { id, name, price, description, duration } = service;
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h3 className="text-xl font-semibold text-[#222831] mb-2">{name}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
+    <div className="bg-text rounded-lg shadow-md p-6">
+      <h3 className="text-xl font-semibold text-background mb-2">{name}</h3>
+      <p className="text-contrast mb-4">{description}</p>
       <div className="flex items-center justify-between mb-4">
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-contrast">
           Duración estimada: {duration}
         </span>
-        <span className="text-lg font-bold text-[#948979]">
+        <span className="text-lg font-bold text-accent">
           ${price.toFixed(2)}
         </span>
       </div>
       <button
         onClick={() => addToCart(service)}
-        className="w-full bg-[#948979] text-white px-4 py-2 rounded-md hover:bg-[#393E46] transition-colors"
+        className="w-full bg-accent text-light px-4 py-2 rounded-md hover:bg-background hover:text-accent transition-colors"
       >
         Agregar al carrito
       </button>

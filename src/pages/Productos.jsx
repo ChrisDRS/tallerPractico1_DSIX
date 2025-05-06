@@ -50,7 +50,7 @@ const Productos = () => {
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-center mb-8">
+        <h1 className="text-3xl font-bold text-center mb-8 text-text">
           Nuestros Productos
         </h1>
 
@@ -64,8 +64,8 @@ const Productos = () => {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-4 py-2 rounded-md ${
                     selectedCategory === category.id
-                      ? 'bg-[#948979] text-white'
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      ? 'bg-accent text-light'
+                      : 'bg-contrast text-light hover:bg-background'
                   }`}
                 >
                   {category.name}
@@ -78,7 +78,7 @@ const Productos = () => {
                 placeholder="Buscar productos..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-[#948979]"
+                className="w-full px-4 py-2 border border-contrast rounded-md focus:outline-none focus:border-accent bg-text text-background"
               />
             </div>
           </div>
@@ -93,7 +93,7 @@ const Productos = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
+            <p className="text-contrast text-lg">
               No se encontraron productos que coincidan con tu búsqueda.
             </p>
           </div>

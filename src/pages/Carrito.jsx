@@ -68,13 +68,13 @@ const Carrito = () => {
     return (
       <div className="min-h-screen pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl font-bold mb-4">Tu carrito está vacío</h1>
-          <p className="text-gray-600 mb-8">
+          <h1 className="text-3xl font-bold mb-4 text-text">Tu carrito está vacío</h1>
+          <p className="text-light mb-8">
             Agrega algunos productos o servicios para continuar
           </p>
           <button
             onClick={() => navigate('/productos')}
-            className="bg-[#948979] text-white px-6 py-3 rounded-md hover:bg-[#393E46] transition-colors"
+            className="bg-accent text-text px-6 py-3 rounded-md hover:bg-contrast transition-colors"
           >
             Ver Productos
           </button>
@@ -86,7 +86,7 @@ const Carrito = () => {
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8">Carrito de Compras</h1>
+        <h1 className="text-3xl font-bold mb-8 text-text">Carrito de Compras</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Lista de Items */}
@@ -94,7 +94,7 @@ const Carrito = () => {
             {cart.map(item => (
               <div
                 key={item.id}
-                className="flex items-center justify-between border-b py-4"
+                className="flex items-center justify-between border-b border-background py-4"
               >
                 <div className="flex items-center space-x-4">
                   <img
@@ -103,29 +103,29 @@ const Carrito = () => {
                     className="w-20 h-20 object-cover rounded"
                   />
                   <div>
-                    <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                    <h3 className="font-semibold text-text">{item.name}</h3>
+                    <p className="text-light">${item.price.toFixed(2)}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <div className="flex items-center border rounded">
+                  <div className="flex items-center border border-background rounded">
                     <button
                       onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                      className="px-3 py-1 hover:bg-gray-100"
+                      className="px-3 py-1 hover:bg-background text-text"
                     >
                       -
                     </button>
-                    <span className="px-3 py-1">{item.quantity}</span>
+                    <span className="px-3 py-1 text-text">{item.quantity}</span>
                     <button
                       onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                      className="px-3 py-1 hover:bg-gray-100"
+                      className="px-3 py-1 hover:bg-background text-text"
                     >
                       +
                     </button>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-accent hover:text-light"
                   >
                     Eliminar
                   </button>
@@ -136,14 +136,14 @@ const Carrito = () => {
 
           {/* Resumen y Pago */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-xl font-semibold mb-4">Resumen del Pedido</h2>
+            <div className="bg-contrast p-6 rounded-lg">
+              <h2 className="text-xl font-semibold mb-4 text-text">Resumen del Pedido</h2>
               <div className="space-y-2 mb-4">
-                <div className="flex justify-between">
+                <div className="flex justify-between text-light">
                   <span>Subtotal:</span>
                   <span>${getTotal().toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between font-semibold">
+                <div className="flex justify-between font-semibold text-text">
                   <span>Total:</span>
                   <span>${getTotal().toFixed(2)}</span>
                 </div>
@@ -151,24 +151,24 @@ const Carrito = () => {
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-light mb-2">
                     Comprobante de Pago
                   </label>
                   <input
                     type="file"
                     accept="image/*,.pdf"
                     onChange={handleFileChange}
-                    className="w-full"
+                    className="w-full text-light"
                   />
                   {uploadError && (
-                    <p className="text-red-500 text-sm mt-1">{uploadError}</p>
+                    <p className="text-accent text-sm mt-1">{uploadError}</p>
                   )}
                 </div>
 
                 <button
                   type="submit"
                   disabled={isUploading}
-                  className={`w-full bg-[#948979] text-white px-4 py-2 rounded-md hover:bg-[#393E46] transition-colors ${
+                  className={`w-full bg-accent text-text px-4 py-2 rounded-md hover:bg-contrast transition-colors ${
                     isUploading ? 'opacity-50 cursor-not-allowed' : ''
                   }`}
                 >

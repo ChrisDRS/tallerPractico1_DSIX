@@ -41,7 +41,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#222831] text-white py-20">
+      <section className="bg-background text-text py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4">
@@ -53,13 +53,13 @@ const Home = () => {
             <div className="space-x-4">
               <Link
                 to="/servicios"
-                className="bg-[#948979] text-white px-6 py-3 rounded-md hover:bg-[#393E46] transition-colors"
+                className="bg-accent text-text px-6 py-3 rounded-md hover:bg-contrast transition-colors"
               >
                 Nuestros Servicios
               </Link>
               <Link
                 to="/productos"
-                className="bg-white text-[#222831] px-6 py-3 rounded-md hover:bg-gray-100 transition-colors"
+                className="bg-text text-background px-6 py-3 rounded-md hover:bg-light transition-colors"
               >
                 Ver Productos
               </Link>
@@ -69,9 +69,9 @@ const Home = () => {
       </section>
 
       {/* Featured Services */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-contrast">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-text">
             Servicios Destacados
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -82,7 +82,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link
               to="/servicios"
-              className="text-[#948979] hover:text-[#393E46] font-semibold"
+              className="text-accent hover:text-light font-semibold"
             >
               Ver todos los servicios →
             </Link>
@@ -93,7 +93,7 @@ const Home = () => {
       {/* Featured Products */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-background">
             Productos Destacados
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -104,7 +104,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link
               to="/productos"
-              className="text-[#948979] hover:text-[#393E46] font-semibold"
+              className="text-accent hover:text-contrast font-semibold"
             >
               Ver todos los productos →
             </Link>
@@ -113,7 +113,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#948979] text-white py-16">
+      <section className="bg-accent text-text py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">
             ¿Necesitas ayuda con tu dispositivo?
@@ -123,7 +123,7 @@ const Home = () => {
           </p>
           <Link
             to="/servicios"
-            className="bg-white text-[#948979] px-8 py-4 rounded-md hover:bg-gray-100 transition-colors font-semibold"
+            className="bg-text text-accent px-8 py-4 rounded-md hover:bg-light transition-colors font-semibold"
           >
             Contactar Ahora
           </Link>

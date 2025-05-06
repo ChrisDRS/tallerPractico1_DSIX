@@ -55,13 +55,13 @@ const Servicios = () => {
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-center mb-8">
+        <h1 className="text-3xl font-bold text-center mb-8 text-text">
           Nuestros Servicios
         </h1>
 
         {/* Descripción */}
         <div className="text-center mb-12">
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-text max-w-3xl mx-auto">
             Ofrecemos una amplia gama de servicios profesionales para el mantenimiento
             y reparación de tus dispositivos electrónicos. Nuestro equipo de expertos
             está capacitado para manejar cualquier tipo de problema técnico.
@@ -77,8 +77,8 @@ const Servicios = () => {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-4 py-2 rounded-md ${
                   selectedCategory === category.id
-                    ? 'bg-[#948979] text-white'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    ? 'bg-accent text-light'
+                    : 'bg-contrast text-light hover:bg-background'
                 }`}
               >
                 {category.name}
@@ -95,26 +95,26 @@ const Servicios = () => {
         </div>
 
         {/* Información Adicional */}
-        <div className="mt-16 bg-gray-50 rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-center mb-6">
+        <div className="mt-16 bg-contrast rounded-lg p-8">
+          <h2 className="text-2xl font-bold text-center mb-6 text-text">
             ¿Por qué elegir nuestros servicios?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">Garantía</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-semibold mb-2 text-text">Garantía</h3>
+              <p className="text-light">
                 Todos nuestros servicios incluyen garantía de satisfacción
               </p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">Expertos</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-semibold mb-2 text-text">Expertos</h3>
+              <p className="text-light">
                 Equipo técnico altamente capacitado y certificado
               </p>
             </div>
             <div className="text-center">
-              <h3 className="text-lg font-semibold mb-2">Rápido</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-semibold mb-2 text-text">Rápido</h3>
+              <p className="text-light">
                 Servicio eficiente con tiempos de respuesta rápidos
               </p>
             </div>

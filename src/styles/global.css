@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-background: #1E201E;
+  --color-contrast: #232323;
+  --color-accent: #697565;
+  --color-light: #ECDFCC;
+  --color-text: #FFFFFF;
+}
+
 /* Estilos personalizados */
 body {
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-background text-text;
 }
 
 /* Estilos para el scrollbar */
@@ -13,15 +21,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100;
+  @apply bg-contrast;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#948979] rounded-full;
+  @apply bg-accent rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#393E46];
+  @apply bg-contrast;
 }
 
 /* Estilos para impresión */
@@ -31,7 +39,7 @@ body {
   }
   
   body {
-    @apply bg-white;
+    @apply bg-text;
   }
   
   .print-only {
