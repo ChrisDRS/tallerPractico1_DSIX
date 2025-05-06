@@ -35,9 +35,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contacto</h3>
             <ul className="space-y-2 text-sm">
-              <li>📍 Dirección: Calle Principal #123</li>
-              <li>📞 Teléfono: (123) 456-7890</li>
-              <li>✉️ Email: info@3mprnd.com</li>
+              <li>📍 Dirección: Lassonde, Universidad Tecnologica de Panamá</li>
+              <li>📞 Teléfono: (507) 6913-2396</li>
+              <li>✉️ Email: chrisdrs.dev@gmail.com</li>
             </ul>
           </div>
         </div>
