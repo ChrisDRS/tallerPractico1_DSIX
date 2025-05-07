@@ -3,7 +3,7 @@ import ProductCard from '../components/ProductCard';
 import ServiceCard from '../components/ServiceCard';
 
 const Home = () => {
-  // Datos de ejemplo - Reemplazar con datos reales
+  // Productos y servicios de ejemplo
   const featuredProducts = [
     {
       id: 1,
