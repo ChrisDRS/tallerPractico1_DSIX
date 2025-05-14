@@ -3,21 +3,21 @@ import ProductCard from '../components/ProductCard';
 import ServiceCard from '../components/ServiceCard';
 
 const Home = () => {
-  // Productos y servicios de ejemplo
+  // Productos y servicios de ejemplo, no recargados
   const featuredProducts = [
     {
       id: 1,
       name: 'Laptop HP Reacondicionada',
       price: 499.99,
-      description: 'Laptop HP reacondicionada con garantía de 6 meses',
-      image: '/img/laptop.webp'
+      description: 'Laptop HP reacondicionada con garantía de 6 meses.',
+      image: 'https://images.unsplash.com/photo-1691085475426-d9636c7010b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
       id: 2,
-      name: 'Cargador Universal',
+      name: 'Cargador Portatil Universal',
       price: 29.99,
-      description: 'Cargador compatible con múltiples dispositivos',
-      image: '/img/charger.webp'
+      description: 'Cargador portatil compatible con múltiples dispositivos.',
+      image: 'https://images.unsplash.com/photo-1736516434209-51ece1006788?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     }
   ];
 
