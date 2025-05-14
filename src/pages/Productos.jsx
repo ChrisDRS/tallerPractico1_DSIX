@@ -5,7 +5,9 @@ const Productos = () => {
   const [selectedCategory, setSelectedCategory] = useState('todos');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Datos de ejemplo - Reemplazar con datos de Firestore
+  // Datos de ejemplo - Productos
+  // Esto se reemplazara luego con productos de firestore (base de datos en firebase)
+  
   const products = [
     {
       id: 1,
