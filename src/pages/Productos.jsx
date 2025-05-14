@@ -14,15 +14,15 @@ const Productos = () => {
       name: 'Laptop HP Reacondicionada',
       price: 499.99,
       description: 'Laptop HP reacondicionada con garantía de 6 meses.',
-      image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Public domain image of a laptop
+      image: 'https://images.unsplash.com/photo-1691085475426-d9636c7010b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
       category: 'laptops'
     },
     {
       id: 2,
-      name: 'Cargador Universal',
+      name: 'Cargador Portatil Universal',
       price: 29.99,
-      description: 'Cargador compatible con múltiples dispositivos.',
-      image: 'https://images.unsplash.com/photo-1588872657578-7ae318a9db7b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Public domain image of a charger
+      description: 'Cargador portatil compatible con múltiples dispositivos.',
+      image: 'https://images.unsplash.com/photo-1736516434209-51ece1006788?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       category: 'accesorios'
     },
     {
@@ -30,7 +30,7 @@ const Productos = () => {
       name: 'iPhone 11 Reacondicionado',
       price: 399.99,
       description: 'iPhone 11 reacondicionado con garantía de 3 meses.',
-      image: 'https://images.unsplash.com/photo-1591337676722-5730c099b8c0?auto=format&fit=crop&q=80&w=1964&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Public domain image of an iPhone
+      image: 'https://images.unsplash.com/photo-1574719128055-f4f84a835363?q=80&w=1889&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
       category: 'celulares'
     }
   ];
