@@ -9,7 +9,7 @@ const Servicios = () => {
     {
       id: 1,
       name: 'Mantenimiento Preventivo',
-      price: 49.99,
+      price: 34.99,
       description: 'Limpieza y optimización de tu dispositivo para prevenir problemas futuros',
       duration: '2 horas',
       category: 'mantenimiento'
@@ -17,7 +17,7 @@ const Servicios = () => {
     {
       id: 2,
       name: 'Reparación de Pantalla',
-      price: 99.99,
+      price: 64.99,
       description: 'Reemplazo de pantalla dañada con garantía de 3 meses',
       duration: '3-4 horas',
       category: 'reparacion'
@@ -25,7 +25,7 @@ const Servicios = () => {
     {
       id: 3,
       name: 'Recuperación de Datos',
-      price: 79.99,
+      price: 69.99,
       description: 'Recuperación de datos de dispositivos dañados',
       duration: '4-6 horas',
       category: 'datos'
@@ -33,7 +33,7 @@ const Servicios = () => {
     {
       id: 4,
       name: 'Actualización de Software',
-      price: 29.99,
+      price: 19.99,
       description: 'Actualización y optimización del sistema operativo',
       duration: '1-2 horas',
       category: 'software'

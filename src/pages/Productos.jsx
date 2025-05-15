@@ -32,6 +32,54 @@ const Productos = () => {
       description: 'iPhone 11 reacondicionado con garantía de 3 meses.',
       image: 'https://images.unsplash.com/photo-1574719128055-f4f84a835363?q=80&w=1889&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
       category: 'celulares'
+    },
+    {
+      id: 4,
+      name: 'Laptop MSI Reacondicionada',
+      price: 899.99,
+      description: 'Laptop MSI reacondicionada con garantía de 1 año.',
+      image: 'https://images.unsplash.com/photo-1617294864710-bb97f05457f4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'laptops'
+    },
+    {
+      id: 5,
+      name: 'Laptop Lenovo Thinkpad Reacondicionada',
+      price: 649.99,
+      description: 'Laptop Lenovo Thinkpad de segunda mano con garantía de 6 meses.',
+      image: 'https://images.unsplash.com/photo-1743456056142-1aaf69656dfa?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'laptops'
+    },
+    {
+      id: 6,
+      name: 'Samsung Galaxy Note 10 plus Reacondicionado',
+      price: 249.99,
+      description: 'Samsung Galaxy Note 10 plus reacondicionado con garantía de 2 meses.',
+      image: 'https://images.unsplash.com/photo-1565967249821-083c4775e5bc?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'celulares'
+    },
+    {
+      id: 7,
+      name: 'Huawei Y7 Reacondicionado',
+      price: 129.99,
+      description: 'Huawei Y7 reacondicionado con garantía de 2 meses.',
+      image: 'https://images.unsplash.com/photo-1653250862432-dc8068ad7973?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'celulares'
+    },
+    {
+      id: 8,
+      name: 'Samsung Galaxy Tab Reacondicionada',
+      price: 399.99,
+      description: 'Samsung Galaxy Tab de segunda mano con garantía de 1 año.',
+      image: 'https://images.unsplash.com/photo-1622533950960-2ed47209dab0?q=80&w=2109&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'tablets'
+    },
+    {
+      id: 9,
+      name: 'Wacom Tablen Reacondicionada',
+      price: 229.99,
+      description: 'Tablet Wacom reacondicionada con garantía de 2 años.',
+      image: 'https://images.unsplash.com/photo-1671957694269-fe1eaa1f9385?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      category: 'accesorios'
     }
   ];
 
@@ -39,7 +87,8 @@ const Productos = () => {
     { id: 'todos', name: 'Todos' },
     { id: 'laptops', name: 'Laptops' },
     { id: 'celulares', name: 'Celulares' },
-    { id: 'accesorios', name: 'Accesorios' }
+    { id: 'accesorios', name: 'Accesorios' },
+    { id: 'tablets', name: 'Tablets' }
   ];
 
   const filteredProducts = products.filter(product => {

@@ -32,7 +32,7 @@ body {
   @apply bg-contrast;
 }
 
-/* Estilos para impresión */
+/* Estilos para impresión (aun no se utiliza) */
 @media print {
   .no-print {
     display: none !important;

@@ -25,14 +25,14 @@ const Home = () => {
     {
       id: 1,
       name: 'Mantenimiento Preventivo',
-      price: 49.99,
+      price: 34.99,
       description: 'Limpieza y optimización de tu dispositivo',
       duration: '2 horas'
     },
     {
       id: 2,
       name: 'Reparación de Pantalla',
-      price: 99.99,
+      price: 64.99,
       description: 'Reemplazo de pantalla dañada',
       duration: '3-4 horas'
     }
@@ -48,7 +48,8 @@ const Home = () => {
               Bienvenido a 3MPRND, S.A.
             </h1>
             <p className="text-xl mb-8">
-              Tu solución integral para el mantenimiento y reparación de dispositivos electrónicos
+              Tu solución integral para el mantenimiento y reparación de dispositivos electrónicos.<br></br>
+              También puedes comprar productos reacondicionados en nuestra sección de productos.
             </p>
             <div className="space-x-4">
               <Link

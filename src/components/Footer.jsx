@@ -37,7 +37,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>📍 Dirección: Lassonde, Universidad Tecnologica de Panamá</li>
               <li>📞 Teléfono: (507) 6913-2396</li>
-              <li>✉️ Email: chrisdrs.dev@gmail.com</li>
+              <li>✉️ Email: chrisdrs.dev@3mprnd.com</li>
             </ul>
           </div>
         </div>

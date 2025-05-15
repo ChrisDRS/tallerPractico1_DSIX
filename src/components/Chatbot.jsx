@@ -7,10 +7,10 @@ const Chatbot = () => {
 
   const responses = {
     'hola': '¡Hola! ¿En qué puedo ayudarte hoy?',
-    'servicios': 'Ofrecemos mantenimiento y reparación de dispositivos electrónicos, venta de equipos reacondicionados y accesorios compatibles.',
-    'precios': 'Los precios varían según el servicio o producto. Puedes consultar nuestra sección de productos y servicios para más detalles.',
-    'horario': 'Nuestro horario de atención es de lunes a viernes de 9:00 AM a 6:00 PM.',
-    'contacto': 'Puedes contactarnos al (507) 6913-2396 o enviarnos un email a info@3mprnd.com',
+    'servicio': 'Ofrecemos mantenimiento y reparación de dispositivos electrónicos, venta de equipos reacondicionados y accesorios compatibles.',
+    'precio': 'Los precios varían según el servicio o producto. Puedes consultar nuestra sección de productos y servicios para más detalles.',
+    'horario': 'Nuestro horario de atención es de lunes a Jueves de 10:00 AM a 5:00 PM.',
+    'contacto': 'Puedes contactarnos al (507) 6913-2396 o enviarnos un email a chrisdrs.dev@3mprnd.com',
     'default': 'Lo siento, no entiendo tu pregunta. ¿Podrías reformularla?'
   };
 
@@ -20,7 +20,7 @@ const Chatbot = () => {
     const userMessage = { text: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
 
-    // Simular respuesta del bot
+    // Simulacion de respuesta del bot
     const botResponse = { 
       text: getBotResponse(input.toLowerCase()),
       sender: 'bot'
