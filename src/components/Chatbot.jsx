@@ -10,7 +10,7 @@ const Chatbot = () => {
     'servicio': 'Ofrecemos mantenimiento y reparación de dispositivos electrónicos, venta de equipos reacondicionados y accesorios compatibles.',
     'precio': 'Los precios varían según el servicio o producto. Puedes consultar nuestra sección de productos y servicios para más detalles.',
     'horario': 'Nuestro horario de atención es de lunes a Jueves de 10:00 AM a 5:00 PM.',
-    'contacto': 'Puedes contactarnos al (507) 6913-2396 o enviarnos un email a chrisdrs.dev@3mprnd.com',
+    'contactar': 'Puedes contactarnos al (507) 6913-2396 o enviarnos un email a chrisdrs.dev@3mprnd.com',
     'default': 'Lo siento, no entiendo tu pregunta. ¿Podrías reformularla?'
   };
 
