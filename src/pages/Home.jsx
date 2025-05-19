@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import ServiceCard from '../components/ServiceCard';
@@ -48,7 +49,7 @@ const Home = () => {
               Bienvenido a 3MPRND, S.A.
             </h1>
             <p className="text-xl mb-8">
-              Tu solución integral para el mantenimiento y reparación de dispositivos electrónicos.<br></br>
+              Tu solución integral para el mantenimiento y reparación de dispositivos electrónicos.<br />
               También puedes comprar productos reacondicionados en nuestra sección de productos.
             </p>
             <div className="space-x-4">
