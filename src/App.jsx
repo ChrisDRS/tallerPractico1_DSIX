@@ -8,7 +8,11 @@ import Productos from './pages/Productos';
 import Servicios from './pages/Servicios';
 import Carrito from './pages/Carrito';
 import Factura from './pages/Factura';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Admin from './pages/Admin';
+import AdminProducts from './pages/AdminProducts';
+import AdminServices from './pages/AdminServices';
 
 function App() {
   return (
@@ -23,7 +27,11 @@ function App() {
               <Route path="/servicios" element={<Servicios />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/factura" element={<Factura />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/services" element={<AdminServices />} />
             </Routes>
           </main>
           <Footer />

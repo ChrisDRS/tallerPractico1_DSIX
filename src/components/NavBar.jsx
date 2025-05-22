@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import logo from '../assets/img/logo.png';
+import { useAuth } from '../context/AuthContext';
 
 const NavBar = () => {
+  const { user, logout } = useAuth();
   const { cart } = useCart();
   const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
 
@@ -42,6 +44,7 @@ const NavBar = () => {
               </div>
             </div>
           </div>
+          {/* Authentication buttons */}
           <div className="flex items-center">
             <Link
               to="/carrito"
@@ -54,11 +57,34 @@ const NavBar = () => {
                 </span>
               )}
             </Link>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
+            {user ? (
+              <button
+                onClick={logout}
+                className="hover:bg-contrast px-3 py-2 rounded-md text-sm font-medium ml-4"
+              >
+                Cerrar sesión
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="hover:bg-contrast px-3 py-2 rounded-md text-sm font-medium ml-4"
+                >
+                  Ingresar
+                </Link>
+                <Link
+                  to="/signup"
+                  className="hover:bg-contrast px-3 py-2 rounded-md text-sm font-medium ml-4"
+                >
+                  Registrarse
+                </Link>
+              </>
+            )}
+ </div>
+ </div>
+ </div>
+ </nav>
+ );
 };
 
 export default NavBar; 
