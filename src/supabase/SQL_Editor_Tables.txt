@@ -1,0 +1,74 @@
+-- =============================
+-- Estructura de Base de Datos
+-- =============================
+
+-- Tabla de Categorías de Productos
+CREATE TABLE IF NOT EXISTS product_categories (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Tabla de Categorías de Servicios
+CREATE TABLE IF NOT EXISTS service_categories (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Tabla de Servicios
+-- (Descomenta si necesitas crearla por primera vez)
+-- CREATE TABLE public.services (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(255) NOT NULL,
+--   price DECIMAL(10, 2) NOT NULL,
+--   description TEXT,
+--   duration VARCHAR(50),
+--   category VARCHAR(100)
+-- );
+
+-- Tabla de Productos
+-- (Descomenta si necesitas crearla por primera vez)
+-- CREATE TABLE public.products (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(255) NOT NULL,
+--   price DECIMAL(10, 2) NOT NULL,
+--   description TEXT,
+--   image VARCHAR(255),
+--   category VARCHAR(100)
+-- );
+
+-- Tabla de Facturas
+CREATE TABLE IF NOT EXISTS invoices (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()),
+  total NUMERIC NOT NULL,
+  status TEXT NOT NULL, -- 'pending', 'paid', etc.
+  payment_proof TEXT,   -- URL del comprobante
+  customer_name TEXT
+);
+
+-- Tabla de Items de Factura
+CREATE TABLE IF NOT EXISTS invoice_items (
+  id SERIAL PRIMARY KEY,
+  invoice_id UUID REFERENCES invoices(id) ON DELETE CASCADE,
+  product_name TEXT NOT NULL,
+  product_type TEXT, -- 'producto' o 'servicio'
+  quantity INTEGER NOT NULL,
+  price NUMERIC NOT NULL
+);
+
+-- Índice para estadísticas de productos/servicios más vendidos
+CREATE INDEX IF NOT EXISTS idx_invoice_items_product_name ON invoice_items(product_name);
+
+-- Extensión para UUID
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Refuerza la relación de clave foránea (por si se pierde en migraciones)
+ALTER TABLE invoice_items
+  DROP CONSTRAINT IF EXISTS invoice_items_invoice_id_fkey;
+
+ALTER TABLE invoice_items
+  ADD CONSTRAINT invoice_items_invoice_id_fkey
+  FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE CASCADE;
+
+-- Consulta para detectar items huérfanos (sin factura asociada)
+-- SELECT * FROM invoice_items WHERE invoice_id NOT IN (SELECT id FROM invoices);

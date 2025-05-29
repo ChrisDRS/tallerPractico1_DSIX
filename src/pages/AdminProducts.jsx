@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/supabase/client';
 
 const AdminProducts = () => {
@@ -7,10 +7,26 @@ const AdminProducts = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState(initialFormData);
   const [isAdding, setIsAdding] = useState(false);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [showAddCategory, setShowAddCategory] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
+  const inputRef = useRef(null);
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    // Extraer categorías únicas de los productos
+    const uniqueCategories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
+    setCategoryOptions(uniqueCategories);
+  }, [products]);
+
+  useEffect(() => {
+    if (showAddCategory && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showAddCategory]);
 
   const fetchProducts = async () => {
     const { data, error } = await supabase
@@ -92,6 +108,23 @@ const AdminProducts = () => {
     }
   };
 
+  const handleAddCategory = () => {
+    if (newCategory && !categoryOptions.includes(newCategory)) {
+      setCategoryOptions([...categoryOptions, newCategory]);
+    }
+    setNewCategory("");
+    setShowAddCategory(false);
+  };
+
+  const handleAddCategoryKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleAddCategory();
+    } else if (e.key === 'Escape') {
+      setShowAddCategory(false);
+      setNewCategory("");
+    }
+  };
+
   const isFormVisible = isAdding || editingProduct;
 
   return (
@@ -100,13 +133,12 @@ const AdminProducts = () => {
       <div className="flex justify-between items-center bg-[#3C3D37] text-[#ECDFCC] p-4 rounded mb-4">
         <h2 className="text-xl font-bold">Gestión de Productos</h2>
         <div>
-          <a href="/admin/products" className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded mr-2 hover:bg-opacity-80">
-            Productos
+          <a href="/admin" className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded mr-2 hover:bg-opacity-80">
+            Administración
           </a>
-          <a href="/admin/services" className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded mr-2 hover:bg-opacity-80">
+          <a href="/admin/services" className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded hover:bg-opacity-80">
             Servicios
           </a>
-          <a href="/" className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded hover:bg-opacity-80">Home</a>
         </div>
       </div>
 
@@ -147,13 +179,44 @@ const AdminProducts = () => {
                 )}
               </tbody>
             </table>
-            <div className="mt-4">
+            <div className="mt-4 flex items-center gap-4">
               <button
                 className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded hover:bg-green-700"
                 onClick={handleAddNewProductClick}
               >
                 Añadir Nuevo Producto
               </button>
+              <button
+                className="bg-[#697565] text-[#ECDFCC] px-4 py-2 rounded hover:bg-blue-700"
+                onClick={() => setShowAddCategory(!showAddCategory)}
+              >
+                Añadir Categoría
+              </button>
+              {showAddCategory && (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    ref={inputRef}
+                    value={newCategory}
+                    onChange={e => setNewCategory(e.target.value)}
+                    onKeyDown={handleAddCategoryKeyDown}
+                    className="p-2 rounded bg-[#1E201E] border border-[#697565] text-[#ECDFCC] focus:ring-[#697565] focus:border-[#697565]"
+                    placeholder="Nueva categoría"
+                  />
+                  <button
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    onClick={handleAddCategory}
+                  >
+                    Guardar
+                  </button>
+                  <button
+                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                    onClick={() => { setShowAddCategory(false); setNewCategory(""); }}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -206,15 +269,18 @@ const AdminProducts = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="category" className="block mb-2">Categoría</label>
-                <input
-                  type="text"
+                <select
                   id="category"
-                  name="category" // Added name attribute
+                  name="category"
                   value={formData.category}
                   onChange={handleInputChange}
                   className="w-full p-2 rounded bg-[#1E201E] border border-[#697565] text-[#ECDFCC] focus:ring-[#697565] focus:border-[#697565]"
-                  placeholder="Categoría del producto"
-                />
+                >
+                  <option value="">Selecciona una categoría</option>
+                  {categoryOptions.map((cat) => (
+                    <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+                  ))}
+                </select>
               </div>
               <div className="mb-4">
                 <label htmlFor="image" className="block mb-2">Imagen URL</label>

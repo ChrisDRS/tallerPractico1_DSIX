@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -6,24 +6,36 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
 
-  const { login } = useAuth();
+  const { login, user, loading } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setLoading(true);
-
+    setLocalLoading(true);
     try {
       await login(email, password);
-      navigate('/');
+      // No navegues aquí, espera a que user esté disponible
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
+      // Manejo de error 400 de Supabase
+      if (error.status === 400) {
+        setError('Correo o contraseña incorrectos, o la cuenta no ha sido confirmada. Por favor, revisa tu correo electrónico.');
+      } else {
+        setError(error.message);
+      }
+      setLocalLoading(false);
     }
   };
+
+  const isLoading = loading || localLoading;
 
   return (
     <div className="min-h-screen bg-background text-light flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -49,6 +61,7 @@ const Login = () => {
                 placeholder="Correo electrónico"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
               />
             </div>
             <div>
@@ -65,6 +78,7 @@ const Login = () => {
                    placeholder="Contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -74,10 +88,18 @@ const Login = () => {
             <button
               type="submit"
               className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-text bg-accent hover:bg-contrast focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent ${
-                loading ? 'opacity-50 cursor-not-allowed' : ''
+                isLoading ? 'opacity-50 cursor-not-allowed' : ''
               }`}
-              disabled={loading}>
-              {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+              disabled={isLoading}>
+              {isLoading ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin h-5 w-5 mr-2 text-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                  </svg>
+                  Iniciando sesión...
+                </span>
+              ) : 'Iniciar sesión'}
             </button>
           </div>
         </form>

@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
             ${price.toFixed(2)}
           </span>
           <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart({ ...product, type: 'producto' })}
             className="bg-accent text-light px-4 py-2 rounded-md hover:bg-background hover:text-accent transition-colors"
           >
             Agregar al carrito

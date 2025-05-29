@@ -1,52 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/supabase/client';
 import ServiceCard from '../components/ServiceCard';
 
 const Servicios = () => {
+  const [services, setServices] = useState([]);
+  const [categories, setCategories] = useState([{ id: 'todos', name: 'Todos' }]);
   const [selectedCategory, setSelectedCategory] = useState('todos');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Servicios que se ofrecen
-  const services = [
-    {
-      id: 1,
-      name: 'Mantenimiento Preventivo',
-      price: 34.99,
-      description: 'Limpieza y optimización de tu dispositivo para prevenir problemas futuros',
-      duration: '2 horas',
-      category: 'mantenimiento'
-    },
-    {
-      id: 2,
-      name: 'Reparación de Pantalla',
-      price: 64.99,
-      description: 'Reemplazo de pantalla dañada con garantía de 3 meses',
-      duration: '3-4 horas',
-      category: 'reparacion'
-    },
-    {
-      id: 3,
-      name: 'Recuperación de Datos',
-      price: 69.99,
-      description: 'Recuperación de datos de dispositivos dañados',
-      duration: '4-6 horas',
-      category: 'datos'
-    },
-    {
-      id: 4,
-      name: 'Actualización de Software',
-      price: 19.99,
-      description: 'Actualización y optimización del sistema operativo',
-      duration: '1-2 horas',
-      category: 'software'
-    }
-  ];
-
-  const categories = [
-    { id: 'todos', name: 'Todos' },
-    { id: 'mantenimiento', name: 'Mantenimiento' },
-    { id: 'reparacion', name: 'Reparación' },
-    { id: 'datos', name: 'Recuperación de Datos' },
-    { id: 'software', name: 'Software' }
-  ];
+  useEffect(() => {
+    const fetchServices = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from('services').select('*');
+      if (error) {
+        setError('Error al cargar servicios');
+        setServices([]);
+        setCategories([{ id: 'todos', name: 'Todos' }]);
+      } else {
+        setServices(data);
+        // Extraer categorías únicas
+        const uniqueCategories = Array.from(new Set(data.map(s => s.category).filter(Boolean)));
+        setCategories([
+          { id: 'todos', name: 'Todos' },
+          ...uniqueCategories.map(cat => ({ id: cat, name: cat.charAt(0).toUpperCase() + cat.slice(1) }))
+        ]);
+      }
+      setLoading(false);
+    };
+    fetchServices();
+  }, []);
 
   const filteredServices = services.filter(service =>
     selectedCategory === 'todos' || service.category === selectedCategory
@@ -88,11 +71,21 @@ const Servicios = () => {
         </div>
 
         {/* Lista de Servicios */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredServices.map(service => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-12">
+            <p className="text-contrast text-lg">Cargando servicios...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-red-500 text-lg">{error}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredServices.map(service => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        )}
 
         {/* Información Adicional */}
         <div className="mt-16 bg-contrast rounded-lg p-8">

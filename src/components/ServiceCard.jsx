@@ -17,7 +17,7 @@ const ServiceCard = ({ service }) => {
         </span>
       </div>
       <button
-        onClick={() => addToCart(service)}
+        onClick={() => addToCart({ ...service, type: 'servicio' })}
         className="w-full bg-accent text-light px-4 py-2 rounded-md hover:bg-background hover:text-accent transition-colors"
       >
         Agregar al carrito

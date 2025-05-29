@@ -1,42 +1,63 @@
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import ServiceCard from '../components/ServiceCard';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/supabase/client';
 
 const Home = () => {
-  // Productos y servicios de ejemplo, no recargados
-  const featuredProducts = [
-    {
-      id: 1,
-      name: 'Laptop HP Reacondicionada',
-      price: 499.99,
-      description: 'Laptop HP reacondicionada con garantía de 6 meses.',
-      image: 'https://images.unsplash.com/photo-1691085475426-d9636c7010b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      id: 2,
-      name: 'Cargador Portatil Universal',
-      price: 29.99,
-      description: 'Cargador portatil compatible con múltiples dispositivos.',
-      image: 'https://images.unsplash.com/photo-1736516434209-51ece1006788?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    }
-  ];
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [featuredServices, setFeaturedServices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const featuredServices = [
-    {
-      id: 1,
-      name: 'Mantenimiento Preventivo',
-      price: 34.99,
-      description: 'Limpieza y optimización de tu dispositivo',
-      duration: '2 horas'
-    },
-    {
-      id: 2,
-      name: 'Reparación de Pantalla',
-      price: 64.99,
-      description: 'Reemplazo de pantalla dañada',
-      duration: '3-4 horas'
-    }
-  ];
+  useEffect(() => {
+    const fetchMostSold = async () => {
+      setLoading(true);
+      // 1. Obtener todos los items de factura
+      const { data: itemsData, error: itemsError } = await supabase
+        .from('invoice_items')
+        .select('product_name, product_type, quantity');
+      if (itemsError) {
+        setLoading(false);
+        return;
+      }
+      // 2. Agrupar y sumar por nombre y tipo
+      const statsMap = {};
+      itemsData.forEach(item => {
+        const key = `${item.product_name}|${item.product_type}`;
+        if (!statsMap[key]) {
+          statsMap[key] = { product_name: item.product_name, product_type: item.product_type, total_vendido: 0 };
+        }
+        statsMap[key].total_vendido += item.quantity;
+      });
+      const statsData = Object.values(statsMap).sort((a, b) => b.total_vendido - a.total_vendido);
+      // 3. Separar productos y servicios
+      const topProducts = statsData.filter(i => i.product_type === 'producto').slice(0, 3);
+      const topServices = statsData.filter(i => i.product_type === 'servicio').slice(0, 3);
+      // 4. Obtener detalles completos de productos
+      let products = [];
+      if (topProducts.length > 0) {
+        const { data: productsData } = await supabase
+          .from('products')
+          .select('*')
+          .in('name', topProducts.map(p => p.product_name));
+        // Ordenar igual que topProducts
+        products = topProducts.map(tp => productsData.find(p => p.name === tp.product_name)).filter(Boolean);
+      }
+      // 5. Obtener detalles completos de servicios
+      let services = [];
+      if (topServices.length > 0) {
+        const { data: servicesData } = await supabase
+          .from('services')
+          .select('*')
+          .in('name', topServices.map(s => s.product_name));
+        services = topServices.map(ts => servicesData.find(s => s.name === ts.product_name)).filter(Boolean);
+      }
+      setFeaturedProducts(products);
+      setFeaturedServices(services);
+      setLoading(false);
+    };
+    fetchMostSold();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -75,11 +96,21 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center mb-12 text-text">
             Servicios Destacados
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredServices.map(service => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-contrast text-lg">Cargando servicios...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredServices.length > 0 ? (
+                featuredServices.map(service => (
+                  <ServiceCard key={service.id} service={service} />
+                ))
+              ) : (
+                <div className="col-span-3 text-center text-light">No hay servicios vendidos aún.</div>
+              )}
+            </div>
+          )}
           <div className="text-center mt-12">
             <Link
               to="/servicios"
@@ -97,11 +128,21 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center mb-12 text-background">
             Productos Destacados
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-contrast text-lg">Cargando productos...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredProducts.length > 0 ? (
+                featuredProducts.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))
+              ) : (
+                <div className="col-span-3 text-center text-light">No hay productos vendidos aún.</div>
+              )}
+            </div>
+          )}
           <div className="text-center mt-12">
             <Link
               to="/productos"
