@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { SlideMenuContext } from './NavBar';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const { slideMenuOpen } = useContext(SlideMenuContext) || {};
 
   const responses = {
     'hola': '¡Hola! ¿En qué puedo ayudarte hoy?',
@@ -42,7 +44,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className={`fixed bottom-4 right-4 z-50${slideMenuOpen ? ' hidden' : ''}`}>
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}

@@ -65,8 +65,8 @@ const Login = () => {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">Contraseña
-                Password
+              <label htmlFor="password" className="sr-only">
+                Contraseña
               </label>
               <input
                 id="password"
