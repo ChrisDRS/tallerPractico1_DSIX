@@ -19,7 +19,7 @@ const Factura = () => {
             onClick={() => navigate('/productos')}
             className="bg-accent text-text px-6 py-3 rounded-md hover:bg-contrast transition-colors"
           >
-            Volver a la tienda
+            Volver al inicio
           </button>
         </div>
       </div>
@@ -40,7 +40,7 @@ const Factura = () => {
           />
           <div className="mt-8 flex justify-center">
             <button
-              onClick={() => navigate('/productos')}
+              onClick={() => navigate('/')}
               className="bg-background text-text px-6 py-3 rounded-md hover:bg-contrast transition-colors"
             >
               Volver a la Tienda
