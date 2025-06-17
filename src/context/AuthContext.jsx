@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       email,
       password,
  options: {
- emailRedirectTo: null, // or the URL of your site to redirect after confirmation
+ emailRedirectTo: null, 
       },
     });
     setLoading(false);
